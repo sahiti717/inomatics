@@ -1,0 +1,412 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "4a9990dc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "data=pd.read_csv('C://Users//sahitiponnam//OneDrive//Desktop//ratings.csv')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "d7c72729",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(100836, 4)"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "data.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "10a15861",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "(9742, 3)"
+      ]
+     },
+     "execution_count": 7,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "data1=pd.read_csv('C://Users//sahitiponnam//OneDrive//Desktop//movies.csv')\n",
+    "data1.shape"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "id": "08e25a64",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "unique_count = len(pd.unique(data['userId']))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9c893f56",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "id": "d2c0429a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "unique_count = len(pd.unique(data['userId']))"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "2715591e",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "610\n"
+     ]
+    }
+   ],
+   "source": [
+    "print(unique_count)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "id": "0e830a54",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Forrest Gump (1994)\n"
+     ]
+    }
+   ],
+   "source": [
+    "#question number 5\n",
+    "mergedf=pd.merge(data, data1, on=\"movieId\" )\n",
+    "rcount=mergedf.groupby(\"title\").size()\n",
+    "maxrating=rcount.idxmax()\n",
+    "print(maxrating)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "id": "dd99787b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "['martial arts', 'sci-fi', 'alternate universe', 'philosophy', 'post apocalyptic']\n"
+     ]
+    }
+   ],
+   "source": [
+    "#6th question\n",
+    "data2=pd.read_csv(\"C://Users//sahitiponnam//OneDrive//Desktop//tags.csv\")\n",
+    "matrixid=data1[data1[\"title\"]==\"Matrix, The (1999)\"][\"movieId\"].values[0]\n",
+    "matrixtag=data2[data2[\"movieId\"]==matrixid]\n",
+    "print(matrixtag[\"tag\"].tolist())"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 24,
+   "id": "56b8cb89",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "3.970982142857143\n"
+     ]
+    }
+   ],
+   "source": [
+    "#7th question\n",
+    "\n",
+    "terminatorid=data1[(data1[\"title\"]==\"Terminator 2: Judgment Day (1991)\")][\"movieId\"].values[0]\n",
+    "terminatorrating=data[data[\"movieId\"]== terminatorid]\n",
+    "avgrating=terminatorrating[\"rating\"].mean()\n",
+    "print(avgrating)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 39,
+   "id": "0699972e",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "NameError",
+     "evalue": "name 'movies_df' is not defined",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mNameError\u001b[0m                                 Traceback (most recent call last)",
+      "Cell \u001b[1;32mIn[39], line 2\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[38;5;66;03m#8th question\u001b[39;00m\n\u001b[1;32m----> 2\u001b[0m fight_club_movie_id \u001b[38;5;241m=\u001b[39m movies_df[(movies_df[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mtitle\u001b[39m\u001b[38;5;124m\"\u001b[39m] \u001b[38;5;241m==\u001b[39m \u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mFight Club (1999)\u001b[39m\u001b[38;5;124m\"\u001b[39m)][\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mmovieId\u001b[39m\u001b[38;5;124m\"\u001b[39m]\u001b[38;5;241m.\u001b[39mvalues[\u001b[38;5;241m0\u001b[39m]\n\u001b[0;32m      5\u001b[0m fight_club_ratings \u001b[38;5;241m=\u001b[39m ratings_df[ratings_df[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mmovieId\u001b[39m\u001b[38;5;124m\"\u001b[39m] \u001b[38;5;241m==\u001b[39m fight_club_movie_id]\n\u001b[0;32m      8\u001b[0m plt\u001b[38;5;241m.\u001b[39mhist(fight_club_ratings[\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mrating\u001b[39m\u001b[38;5;124m\"\u001b[39m], bins\u001b[38;5;241m=\u001b[39m\u001b[38;5;241m10\u001b[39m, edgecolor\u001b[38;5;241m=\u001b[39m\u001b[38;5;124m\"\u001b[39m\u001b[38;5;124mblack\u001b[39m\u001b[38;5;124m\"\u001b[39m)\n",
+      "\u001b[1;31mNameError\u001b[0m: name 'movies_df' is not defined"
+     ]
+    }
+   ],
+   "source": [
+    "#8th question\n",
+    "fight_club_movie_id = movies_df[(movies_df[\"title\"] == \"Fight Club (1999)\")][\"movieId\"].values[0]\n",
+    "\n",
+    "\n",
+    "fight_club_ratings = ratings_df[ratings_df[\"movieId\"] == fight_club_movie_id]\n",
+    "\n",
+    "\n",
+    "plt.hist(fight_club_ratings[\"rating\"], bins=10, edgecolor=\"black\")\n",
+    "plt.title(\"User Ratings Distribution for Fight Club (1999)\")\n",
+    "plt.xlabel(\"Rating\")\n",
+    "plt.ylabel(\"Number of Users\")\n",
+    "plt.show()\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "id": "009a40a3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Most popular movie based on average user ratings:\n",
+      "Shawshank Redemption, The (1994)\n"
+     ]
+    }
+   ],
+   "source": [
+    "#9th\n",
+    "merged_df = pd.merge(data1, data, on='movieId')\n",
+    "\n",
+    "# Filter for the specific movies\n",
+    "movies_to_compare = ['Godfather, The (1972)', 'Shawshank Redemption, The (1994)','Jumanji (1995)', 'Wolf of Wall Street, The (2013)']\n",
+    "filtered_df = merged_df[merged_df['title'].isin(movies_to_compare)]\n",
+    "\n",
+    "# Calculate the average rating for each movie\n",
+    "average_ratings = filtered_df.groupby('title')['rating'].mean()\n",
+    "\n",
+    "# Sort by average rating in descending order\n",
+    "sorted_ratings = average_ratings.sort_values(ascending=False)\n",
+    "\n",
+    "# Print the most popular movie based on average rating\n",
+    "print(\"Most popular movie based on average user ratings:\")\n",
+    "print(sorted_ratings.index[0])\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 34,
+   "id": "6ee6e1be",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Top 5 popular movies based on number of user ratings:\n",
+      "Index(['Forrest Gump (1994)', 'Shawshank Redemption, The (1994)',\n",
+      "       'Pulp Fiction (1994)', 'Silence of the Lambs, The (1991)',\n",
+      "       'Matrix, The (1999)'],\n",
+      "      dtype='object', name='title')\n"
+     ]
+    }
+   ],
+   "source": [
+    "#10th\n",
+    "merged_df = pd.merge(data, data1, on=\"movieId\")\n",
+    "\n",
+    "\n",
+    "ratings_count = merged_df.groupby(\"title\")[\"rating\"].count()\n",
+    "\n",
+    "\n",
+    "top_5_movies = ratings_count.nlargest(5).index\n",
+    "\n",
+    "\n",
+    "print(\"Top 5 popular movies based on number of user ratings:\")\n",
+    "print(top_5_movies)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 35,
+   "id": "b1c43be8",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Third most popular Sci-Fi movie based on user ratings:\n",
+      "Jurassic Park (1993)\n"
+     ]
+    }
+   ],
+   "source": [
+    "#11th\n",
+    "scifi_movies = merged_df[merged_df['genres'].str.contains('Sci-Fi')]  # Assuming 'genres' column\n",
+    "\n",
+    "\n",
+    "rating_counts = scifi_movies.groupby('title')['rating'].count()\n",
+    "\n",
+    "\n",
+    "sorted_rating_counts = rating_counts.sort_values(ascending=False)\n",
+    "\n",
+    "\n",
+    "third_most_popular_scifi = sorted_rating_counts.index[2]\n",
+    "\n",
+    "print(\"Third most popular Sci-Fi movie based on user ratings:\")\n",
+    "print(third_most_popular_scifi)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 36,
+   "id": "15ced94b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "MovieId of the movie with the highest IMDB rating:\n",
+      "1\n"
+     ]
+    }
+   ],
+   "source": [
+    "#12\n",
+    "movie_with_highest_rating = merged_df.loc[merged_df['rating'] == merged_df['rating'].max()]\n",
+    "\n",
+    "\n",
+    "movieId_with_highest_rating = movie_with_highest_rating['movieId'].iloc[0]\n",
+    "\n",
+    "\n",
+    "print(\"MovieId of the movie with the highest IMDB rating:\")\n",
+    "print(movieId_with_highest_rating)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 37,
+   "id": "e76ee1e0",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "MovieId of the Sci-Fi movie with the highest IMDB rating:\n",
+      "260\n"
+     ]
+    }
+   ],
+   "source": [
+    "#13\n",
+    "scifi_movies = merged_df[merged_df['genres'].str.contains('Sci-Fi')]  # Assuming 'genres' column\n",
+    "\n",
+    "\n",
+    "scifi_movie_with_highest_rating = scifi_movies.loc[scifi_movies['rating'] == scifi_movies['rating'].max()]\n",
+    "\n",
+    "\n",
+    "scifi_movieId_with_highest_rating = scifi_movie_with_highest_rating['movieId'].iloc[0]\n",
+    "\n",
+    "\n",
+    "print(\"MovieId of the Sci-Fi movie with the highest IMDB rating:\")\n",
+    "print(scifi_movieId_with_highest_rating)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 40,
+   "id": "54397051",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "'C:\\\\Users\\\\sahitiponnam'"
+      ]
+     },
+     "execution_count": 40,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "%pwd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "bd988bed",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
